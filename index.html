@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ATUL X CODER</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#020609;color:#00e5ff;
+ font-family:monospace;letter-spacing:2px;
+ background-image:linear-gradient(#06333b55 1px,transparent 1px),
+ linear-gradient(90deg,#06333b55 1px,transparent 1px);
+ background-size:30px 30px
+}
+header,.box{
+ width:92%;max-width:700px;margin:22px auto;padding:22px;
+ border:1px solid #087383;border-radius:18px;
+ background:#031219ed;box-shadow:0 0 20px #00e5ff12
+}
+header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{text-align:center;color:white;font-size:36px;text-shadow:0 0 18px #00e5ff}
+h2{color:#fff;font-size:18px}
+p{line-height:1.8}
+.green{color:#00ffad}
+.red{color:#ff455d}
+label{display:block;color:#7fabb9;margin:20px 0 10px}
+input,button{
+ width:100%;padding:16px;border:1px solid #00e5ff;
+ border-radius:10px;background:#01080c;color:#00ffad;
+ font:inherit;margin-bottom:10px
+}
+button{background:#00323a;color:#00f5ff;font-weight:bold}
+button:active{transform:scale(.98)}
+.terminal{
+ background:#010609;border:1px solid #07515c;
+ border-radius:10px;padding:16px;line-height:2;
+ overflow-wrap:anywhere;min-height:100px
+}
+footer{text-align:center;padding:30px;color:#49636b;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+ <b style="color:white">ATUL <span class="green">X CODER</span></b>
+ <span class="green">● SYSTEM ONLINE</span>
+</header>
+
+<p style="text-align:center">ADVANCED CYBER INTERFACE</p>
+<h1>ATUL X CODER</h1>
+
+
+<section class="box">
+<h2>UID ANALYSIS <span class="green">/ </span></h2>
+<label for="uid">TEST UID</label>
+<input id="uid" inputmode="numeric" placeholder="Enter test UID">
+<label for="date">ANALYSIS DATE</label>
+<input id="date" type="date">
+<div class="terminal" id="output">[SYSTEM] Waiting for input...</div>
+<br>
+<div style="height:8px;background:#173039;border-radius:10px">
+<div id="bar" style="height:8px;width:0;background:#00ffad;border-radius:10px"></div>
+</div>
+</section>
+
+<section class="box">
+<h2>LIVE CODE STREAM</h2>
+<div class="terminal" id="stream">
+<span class="green">[SYSTEM]</span> Interface initialized.<br>
+<span class="red">[NOTICE]</span> Simulation mode enabled.
+</div>
+</section>
+
+<section class="box">
+<h2>SERVER SYNC STATUS</h2>
+
+<div class="terminal">
+<p>REGISTERED TEST UID</p>
+<h1 id="registered">----------</h1>
+<p class="green">LOCAL SIMULATION</p>
+<p>No connection to any game server.</p>
+</div>
+</section>
+
+<section class="box">
+<h2>NETWORK STATUS</h2>
+<p class="green">● WEB INTERFACE ONLINE</p>
+<p style="color:#7895a0">This page does not collect IP addresses or track visitors.</p>
+</section>
+
+<footer>© 2026 ATUL X CODER<br><br>CYBER UI •  PROJECT</footer>
+
+<script>
+</script>
+</body>
+</html>
