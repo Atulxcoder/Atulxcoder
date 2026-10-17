@@ -68,7 +68,7 @@ button:disabled{opacity:.5}
   <h2>⚡ UID CONTROL PANEL</h2>
   <label for="uid">UID डालें (8–12 अंक)</label>
   <input id="uid" inputmode="numeric" maxlength="12" placeholder="अपना UID यहाँ लिखें">
-  <button id="start">▶ START PROCESS</button>
+  <button type="button" id="start">▶ START PROCESS</button>
  </section>
 
  <section class="card">
@@ -153,5 +153,78 @@ $('start').addEventListener('click',()=>{
  },120);
 });
 </script>
+
+<script id="atul-fix">
+(function () {
+  const old = document.getElementById("atul-fix");
+  if (old) return;
+
+  const start = document.getElementById("start");
+  if (!start) return;
+
+  start.type = "button";
+
+  document.addEventListener("click", function (event) {
+    const button = event.target.closest("#start");
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    if (button.dataset.running === "yes") return;
+    button.dataset.running = "yes";
+    button.disabled = true;
+
+    const status = document.getElementById("status");
+    const uidStatus = document.getElementById("uidstatus");
+    const log = document.getElementById("log");
+    const terminal = document.getElementById("terminal");
+    const bar = document.querySelector(
+      "#progress-bar, .progress-bar, [role='progressbar']"
+    );
+    const percent = document.getElementById("percent");
+
+    let n = 0;
+    if (status) status.textContent = "PROCESSING";
+    if (log) log.textContent = "Process started...";
+    if (terminal) terminal.textContent += "\nProcess started...\n";
+
+    const timer = setInterval(function () {
+      n = Math.min(100, n + 5);
+
+      if (bar) {
+        bar.style.width = n + "%";
+        bar.setAttribute("aria-valuenow", n);
+      }
+      if (percent) percent.textContent = n + "%";
+
+      if (n >= 100) {
+        clearInterval(timer);
+        if (status) status.textContent = "PROCESS COMPLETE";
+        if (uidStatus) uidStatus.textContent = "SERVER STATUS UNVERIFIED";
+        if (log) log.textContent =
+          "Process complete. Server status has not been verified.";
+        if (terminal) terminal.textContent +=
+          "Process complete. Server status has not been verified.\n";
+
+        const message =
+          "Process complete. Server status has not been verified.";
+        if ("speechSynthesis" in window) {
+          speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(message);
+          utterance.lang = "en-US";
+          speechSynthesis.speak(utterance);
+        }
+
+        button.dataset.running = "no";
+        button.disabled = false;
+        button.textContent = "↻ RESTART PROCESS";
+      }
+    }, 250);
+  }, true);
+})();
+</script>
+
 </body>
 </html>
