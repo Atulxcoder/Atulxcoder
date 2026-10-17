@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATUL X CODER</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;padding:20px 14px;
+ background:radial-gradient(circle at top,#123044,#050810 65%);
+ color:#e9fbff;font-family:Arial,sans-serif;
+ display:flex;justify-content:center;align-items:center
+}
+.card{
+ width:100%;max-width:480px;padding:25px 20px;
+ background:rgba(9,19,31,.94);border:1px solid #00e5ff;
+ border-radius:20px;box-shadow:0 0 25px #00d9ff22
+}
+.welcome{text-align:center;color:#00e5ff;font-size:25px;font-weight:900;
+ animation:glow 1.8s infinite alternate}
+@keyframes glow{from{text-shadow:0 0 5px #00e5ff}
+to{text-shadow:0 0 20px #00e5ff}}
+.subtitle{text-align:center;color:#91a9b9;font-size:12px;letter-spacing:2px}
+.status{margin:24px 0 20px;text-align:center;color:#00ff9d;font-weight:bold}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;
+ background:#00ff9d;margin-right:7px}
+label{display:block;margin:15px 0 8px;color:#a8c6d5;font-size:13px}
+input{
+ width:100%;padding:15px;border:1px solid #244b60;border-radius:10px;
+ outline:none;background:#07111d;color:white;font-size:17px
+}
+input:focus{border-color:#00e5ff}
+button{
+ width:100%;margin-top:17px;padding:15px;border:0;border-radius:10px;
+ background:linear-gradient(90deg,#00d9ff,#00ff9d);
+ color:#031018;font-size:16px;font-weight:900;cursor:pointer
+}
+button:disabled{opacity:.5;cursor:not-allowed}
+.progress-bg{height:10px;background:#172b3a;border-radius:20px;
+ overflow:hidden;margin-top:22px}
+#progress{height:100%;width:0%;background:linear-gradient(90deg,#00d9ff,#00ff9d);
+ transition:width .25s}
+.info{margin-top:20px;padding:15px;border:1px solid #1c3b4c;
+ border-radius:12px;background:#08121d}
+.row{display:flex;justify-content:space-between;gap:12px;
+ padding:9px 0;border-bottom:1px solid #172b3a;font-size:13px}
+.row:last-child{border:0}
+.value{color:#00e5ff;text-align:right;overflow-wrap:anywhere}
+#message{margin-top:18px;min-height:24px;text-align:center;
+ font-size:13px;color:#00ff9d}
+.footer{text-align:center;color:#607d8c;font-size:11px;margin-top:20px}
+</style>
+</head>
+<body>
+<main class="card">
+ <div class="welcome">WELCOME TO<br>ATUL X CODER</div>
+ <p class="subtitle">UID PROCESSING PANEL</p>
+
+ <div class="status"><span class="dot"></span><span id="status">SYSTEM READY</span></div>
+
+ <label for="uid">अपना UID दर्ज करें (8–12 अंक)</label>
+ <input id="uid" type="text" inputmode="numeric" maxlength="12"
+ placeholder="यहाँ UID डालें" autocomplete="off">
+
+ <button id="start">▶ START</button>
+
+ <div class="progress-bg"><div id="progress"></div></div>
+
+ <div class="info">
+  <div class="row"><span>UID</span><span class="value" id="shownUid">—</span></div>
+  <div class="row"><span>शुरू होने का समय</span><span class="value" id="startTime">—</span></div>
+  <div class="row"><span>बीता हुआ समय</span><span class="value" id="elapsed">00:00</span></div>
+  <div class="row"><span>प्रोग्रेस</span><span class="value" id="percent">0%</span></div>
+ </div>
+
+ <div id="message">UID दर्ज करें और START दबाएँ।</div>
+ <div class="footer">ATUL X CODER · SYSTEM INTERFACE</div>
+</main>
+
+<script>
+const uidInput=document.getElementById('uid');
+const startBtn=document.getElementById('start');
+const statusText=document.getElementById('status');
+const progress=document.getElementById('progress');
+const percent=document.getElementById('percent');
+const message=document.getElementById('message');
+const startTime=document.getElementById('startTime');
+const elapsed=document.getElementById('elapsed');
+const shownUid=document.getElementById('shownUid');
+
+let timer=null,startedAt=0;
+
+uidInput.addEventListener('input',()=>{
+ uidInput.value=uidInput.value.replace(/\D/g,'').slice(0,12);
+});
+
+startBtn.addEventListener('click',()=>{
+ const uid=uidInput.value.trim();
+
+ if(!/^\d{8,12}$/.test(uid)){
+  message.style.color='#ff7070';
+  message.textContent='कृपया 8 से 12 अंकों का सही UID डालें।';
+  uidInput.focus();
+  return;
+ }
+
+ if(timer) clearInterval(timer);
+ startedAt=Date.now();
+ shownUid.textContent=uid;
+ startTime.textContent=new Date().toLocaleTimeString('hi-IN');
+ elapsed.textContent='00:00';
+ progress.style.width='0%';
+ percent.textContent='0%';
+ statusText.textContent='SYSTEM RUNNING';
+ message.style.color='#00ff9d';
+ message.textContent='प्रोसेस चल रहा है...';
+ startBtn.disabled=true;
+ uidInput.disabled=true;
+
+ let value=0;
+ timer=setInterval(()=>{
+  value=Math.min(value+2,100);
+  progress.style.width=value+'%';
+  percent.textContent=value+'%';
+
+  const seconds=Math.floor((Date.now()-startedAt)/1000);
+  elapsed.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+
+   String(seconds%60).padStart(2,'0');
+
+  if(value>=100){
+   clearInterval(timer);
+   timer=null;
+   statusText.textContent='PROCESS COMPLETE';
+   message.textContent='इंटरफेस प्रोसेस पूरा हुआ।';
+   startBtn.disabled=false;
+   uidInput.disabled=false;
+   startBtn.textContent='↻ RESTART';
+  }
+ },100);
+});
+</script>
+</body>
+</html>

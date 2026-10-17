@@ -2,142 +2,155 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070816">
 <title>ATUL X CODER</title>
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;min-height:100vh;padding:20px 14px;
- background:radial-gradient(circle at top,#123044,#050810 65%);
- color:#e9fbff;font-family:Arial,sans-serif;
- display:flex;justify-content:center;align-items:center
+ margin:0;padding:20px 14px;min-height:100vh;color:#f5f7ff;
+ font-family:Arial,sans-serif;
+ background:radial-gradient(ellipse at top,#27205b 0%,#0a1025 45%,#05060c 100%)
 }
+.wrap{max-width:520px;margin:auto}
 .card{
- width:100%;max-width:480px;padding:25px 20px;
- background:rgba(9,19,31,.94);border:1px solid #00e5ff;
- border-radius:20px;box-shadow:0 0 25px #00d9ff22
+ background:rgba(13,17,39,.92);border:1px solid #5d51a9;
+ border-radius:20px;padding:21px;margin-bottom:17px;
+ box-shadow:0 0 28px #6747ff20
 }
-.welcome{text-align:center;color:#00e5ff;font-size:25px;font-weight:900;
- animation:glow 1.8s infinite alternate}
-@keyframes glow{from{text-shadow:0 0 5px #00e5ff}
-to{text-shadow:0 0 20px #00e5ff}}
-.subtitle{text-align:center;color:#91a9b9;font-size:12px;letter-spacing:2px}
-.status{margin:24px 0 20px;text-align:center;color:#00ff9d;font-weight:bold}
-.dot{display:inline-block;width:9px;height:9px;border-radius:50%;
- background:#00ff9d;margin-right:7px}
-label{display:block;margin:15px 0 8px;color:#a8c6d5;font-size:13px}
-input{
- width:100%;padding:15px;border:1px solid #244b60;border-radius:10px;
- outline:none;background:#07111d;color:white;font-size:17px
+.hero{text-align:center;padding:28px 15px}
+.brand{
+ font-size:clamp(27px,7vw,38px);font-weight:900;letter-spacing:1px;
+ background:linear-gradient(90deg,#45edff,#a78bfa,#4dffbb);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ animation:shine 2s ease-in-out infinite alternate
 }
-input:focus{border-color:#00e5ff}
-button{
- width:100%;margin-top:17px;padding:15px;border:0;border-radius:10px;
- background:linear-gradient(90deg,#00d9ff,#00ff9d);
- color:#031018;font-size:16px;font-weight:900;cursor:pointer
-}
-button:disabled{opacity:.5;cursor:not-allowed}
-.progress-bg{height:10px;background:#172b3a;border-radius:20px;
- overflow:hidden;margin-top:22px}
-#progress{height:100%;width:0%;background:linear-gradient(90deg,#00d9ff,#00ff9d);
- transition:width .25s}
-.info{margin-top:20px;padding:15px;border:1px solid #1c3b4c;
- border-radius:12px;background:#08121d}
-.row{display:flex;justify-content:space-between;gap:12px;
- padding:9px 0;border-bottom:1px solid #172b3a;font-size:13px}
-.row:last-child{border:0}
-.value{color:#00e5ff;text-align:right;overflow-wrap:anywhere}
-#message{margin-top:18px;min-height:24px;text-align:center;
- font-size:13px;color:#00ff9d}
-.footer{text-align:center;color:#607d8c;font-size:11px;margin-top:20px}
+@keyframes shine{from{filter:drop-shadow(0 0 2px #45edff)}
+to{filter:drop-shadow(0 0 12px #8b5cf6)}}
+.sub{color:#a7b1d1;font-size:12px;letter-spacing:3px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:9px;margin-top:20px;
+ border:1px solid #276b60;background:#0b2928;color:#6dffce;
+ border-radius:30px;padding:9px 14px;font-size:12px}
+.dot{width:8px;height:8px;border-radius:50%;background:#36ffb0;
+ box-shadow:0 0 12px #36ffb0;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+h2{font-size:16px;margin:0 0 18px}
+label{display:block;font-size:13px;color:#b7c3e2;margin:14px 0 8px}
+input{width:100%;padding:15px;background:#080d20;border:1px solid #454577;
+ border-radius:11px;color:#fff;font-size:17px;outline:none}
+input:focus{border-color:#56e9ff;box-shadow:0 0 12px #56e9ff25}
+button{width:100%;padding:15px;margin-top:16px;border:0;border-radius:11px;
+ font-size:15px;font-weight:900;color:#080b19;
+ background:linear-gradient(100deg,#50eaff,#9b8aff,#5affc3)}
+button:disabled{opacity:.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.metric{padding:15px 12px;background:#090e22;border:1px solid #2a3159;border-radius:13px}
+.metric small{display:block;color:#9da9ce;font-size:11px;margin-bottom:9px}
+.metric strong{font-size:19px;color:#65eaff;overflow-wrap:anywhere}
+.barbg{height:12px;background:#252744;border-radius:20px;overflow:hidden;margin-top:12px}
+#bar{height:100%;width:0%;background:linear-gradient(90deg,#46eaff,#a18aff,#53ffbc);transition:width .2s}
+#pct{float:right;color:#69f7ce;font-size:12px;margin-top:9px}
+.terminal{background:#030711;border:1px solid #293753;border-radius:12px;padding:14px;
+ min-height:180px;max-height:280px;overflow:auto;font:12px/1.8 monospace;color:#7dffc7}
+.terminal div:before{content:"> ";color:#60eaff}
+.note{font-size:11px;color:#8390b4;line-height:1.7;text-align:center}
 </style>
 </head>
 <body>
-<main class="card">
- <div class="welcome">WELCOME TO<br>ATUL X CODER</div>
- <p class="subtitle">UID PROCESSING PANEL</p>
+<div class="wrap">
+ <header class="card hero">
+  <div class="brand">WELCOME TO<br>ATUL X CODER</div>
+  <div class="sub">ADVANCED UID INTERFACE</div>
+  <div class="pill"><span class="dot"></span><span id="status">SYSTEM READY</span></div>
+ </header>
 
- <div class="status"><span class="dot"></span><span id="status">SYSTEM READY</span></div>
+ <section class="card">
+  <h2>⚡ UID CONTROL PANEL</h2>
+  <label for="uid">UID डालें (8–12 अंक)</label>
+  <input id="uid" inputmode="numeric" maxlength="12" placeholder="अपना UID यहाँ लिखें">
+  <button id="start">▶ START PROCESS</button>
+ </section>
 
- <label for="uid">अपना UID दर्ज करें (8–12 अंक)</label>
- <input id="uid" type="text" inputmode="numeric" maxlength="12"
- placeholder="यहाँ UID डालें" autocomplete="off">
+ <section class="card">
+  <h2>📊 LIVE PROCESS STATUS</h2>
+  <div class="grid">
+   <div class="metric"><small>PROCESS PROGRESS</small><strong id="pctnum">0%</strong></div>
+   <div class="metric"><small>ELAPSED TIME</small><strong id="elapsed">00:00</strong></div>
+   <div class="metric"><small>START TIME</small><strong id="starttime">--:--:--</strong></div>
+   <div class="metric"><small>UID STATUS</small><strong id="uidstatus">WAITING</strong></div>
+  </div>
+  <div class="barbg"><div id="bar"></div></div>
+  <div id="pct">0% complete</div>
+ </section>
 
- <button id="start">▶ START</button>
-
- <div class="progress-bg"><div id="progress"></div></div>
-
- <div class="info">
-  <div class="row"><span>UID</span><span class="value" id="shownUid">—</span></div>
-  <div class="row"><span>शुरू होने का समय</span><span class="value" id="startTime">—</span></div>
-  <div class="row"><span>बीता हुआ समय</span><span class="value" id="elapsed">00:00</span></div>
-  <div class="row"><span>प्रोग्रेस</span><span class="value" id="percent">0%</span></div>
- </div>
-
- <div id="message">UID दर्ज करें और START दबाएँ।</div>
- <div class="footer">ATUL X CODER · SYSTEM INTERFACE</div>
-</main>
-
+ <section class="card">
+  <h2>💻 LIVE CODE STREAM</h2>
+  <div class="terminal" id="terminal" aria-live="polite">
+   <div>Interface initialized.</div>
+   <div>Waiting for user input...</div>
+   <div>Ready to start.</div>
+  </div>
+ </section>
+ <p class="note">ATUL X CODER · Interface status and local process logs</p>
+</div>
 <script>
-const uidInput=document.getElementById('uid');
-const startBtn=document.getElementById('start');
-const statusText=document.getElementById('status');
-const progress=document.getElementById('progress');
-const percent=document.getElementById('percent');
-const message=document.getElementById('message');
-const startTime=document.getElementById('startTime');
-const elapsed=document.getElementById('elapsed');
-const shownUid=document.getElementById('shownUid');
-
-let timer=null,startedAt=0;
-
-uidInput.addEventListener('input',()=>{
- uidInput.value=uidInput.value.replace(/\D/g,'').slice(0,12);
+const $=id=>document.getElementById(id);
+let interval=null;
+$('uid').addEventListener('input',()=>{
+ $('uid').value=$('uid').value.replace(/\D/g,'').slice(0,12);
 });
-
-startBtn.addEventListener('click',()=>{
- const uid=uidInput.value.trim();
-
+function log(text){
+ const line=document.createElement('div');
+ line.textContent=new Date().toLocaleTimeString('hi-IN')+' '+text;
+ $('terminal').appendChild(line);
+ $('terminal').scrollTop=$('terminal').scrollHeight;
+ while($('terminal').children.length>40)$('terminal').firstElementChild.remove();
+}
+$('start').addEventListener('click',()=>{
+ const uid=$('uid').value.trim();
  if(!/^\d{8,12}$/.test(uid)){
-  message.style.color='#ff7070';
-  message.textContent='कृपया 8 से 12 अंकों का सही UID डालें।';
-  uidInput.focus();
-  return;
+  $('uidstatus').textContent='INVALID';
+  log('Enter a valid UID containing 8 to 12 digits.');
+  $('uid').focus();return;
  }
-
- if(timer) clearInterval(timer);
- startedAt=Date.now();
- shownUid.textContent=uid;
- startTime.textContent=new Date().toLocaleTimeString('hi-IN');
- elapsed.textContent='00:00';
- progress.style.width='0%';
- percent.textContent='0%';
- statusText.textContent='SYSTEM RUNNING';
- message.style.color='#00ff9d';
- message.textContent='प्रोसेस चल रहा है...';
- startBtn.disabled=true;
- uidInput.disabled=true;
-
- let value=0;
- timer=setInterval(()=>{
-  value=Math.min(value+2,100);
-  progress.style.width=value+'%';
-  percent.textContent=value+'%';
-
-  const seconds=Math.floor((Date.now()-startedAt)/1000);
-  elapsed.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+
-   String(seconds%60).padStart(2,'0');
-
-  if(value>=100){
-   clearInterval(timer);
-   timer=null;
-   statusText.textContent='PROCESS COMPLETE';
-   message.textContent='इंटरफेस प्रोसेस पूरा हुआ।';
-   startBtn.disabled=false;
-   uidInput.disabled=false;
-   startBtn.textContent='↻ RESTART';
+ if(interval)clearInterval(interval);
+ let progress=0;const begin=Date.now();
+ $('terminal').replaceChildren();
+ $('start').disabled=true;$('uid').disabled=true;
+ $('status').textContent='SYSTEM RUNNING';
+ $('uidstatus').textContent='FORMAT OK';
+ $('starttime').textContent=new Date().toLocaleTimeString('hi-IN');
+ $('elapsed').textContent='00:00';
+ $('bar').style.width='0%';$('pctnum').textContent='0%';$('pct').textContent='0% complete';
+ log('Process started.');
+ log('UID format checked locally.');
+ log('Initializing interface tasks...');
+ const messages=[
+  'Preparing local process...',
+  'Updating progress display...',
+  'Checking interface state...',
+  'Finishing local tasks...'
+ ];
+ let lastStep=-1;
+ interval=setInterval(()=>{
+  progress=Math.min(100,progress+2);
+  $('bar').style.width=progress+'%';
+  $('pctnum').textContent=progress+'%';
+  $('pct').textContent=progress+'% complete';
+  const secs=Math.floor((Date.now()-begin)/1000);
+  $('elapsed').textContent=String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
+  const step=Math.min(messages.length-1,Math.floor(progress/26));
+  if(step!==lastStep){log(messages[step]);lastStep=step;}
+  if(progress>=100){
+   clearInterval(interval);interval=null;
+   $('status').textContent='PROCESS COMPLETE';
+   $('uidstatus').textContent='CHECKED';
+   log('Local interface process completed.');
+   log('No external server result was requested.');
+   $('start').disabled=false;$('uid').disabled=false;
+   $('start').textContent='↻ RESTART PROCESS';
   }
- },100);
+ },120);
 });
 </script>
 </body>
